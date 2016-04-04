@@ -33,7 +33,7 @@ public class Simulator {
         }
     }
 
-    private void tick() {
+    public void tick() {
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {

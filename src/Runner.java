@@ -6,8 +6,10 @@ import java.awt.*;
                 import javax.swing.*;
 
 public class Runner {
-
+ private Simulator sim;
     public static void main (String[] args) {
+        Simulator sim = new Simulator();
+
         JFrame frame = new JFrame("Car park menu");
 
         Container contentPane = frame.getContentPane();
@@ -18,28 +20,32 @@ public class Runner {
         JMenu fileMenu = new JMenu("Run");
         menubar.add(fileMenu);
 
-        JMenuItem startsimulation = new JMenuItem("Create Simulator");
-        startsimulation.addActionListener(new ActionListener() {
-             @Override
-            public void actionPerformed(ActionEvent e) {
-                Simulator sim = new Simulator();
 
-
-            }
-        });
-        fileMenu.add(startsimulation);
-        frame.getContentPane().add(startsimulation);
-
-        JMenuItem runsimulation = new JMenuItem("Run Simulator");
+        JMenuItem runsimulation = new JMenuItem("Run Simulation once");
         runsimulation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                sim.run();
+                sim.tick();
             }
         });
+
+        JMenuItem runsimulationhundred = new JMenuItem("Run Simulation a hundred times");
+        runsimulationhundred.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int i = 0;
+                while (i < 101){
+                    sim.tick();
+                    i++;
+                }
+            }
+        });
+
         fileMenu.add(runsimulation);
-        frame.getContentPane().add(runsimulation);
+        fileMenu.add(runsimulationhundred);
+
+
 
         frame.pack();
         frame.setVisible(true);
