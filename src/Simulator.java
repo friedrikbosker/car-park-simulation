@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class Simulator {
 
+    private static final int Parkingpasschance = 3;
+
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
@@ -62,8 +64,13 @@ public class Simulator {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            Car car = new AdHocCar();
-            entranceCarQueue.addCar(car);
+            if(random.nextInt(10) > Parkingpasschance) {
+                Car car = new AdHocCar();
+                entranceCarQueue.addCar(car);
+            } else {
+                Car car = new ParkingPass();
+                entranceCarQueue.addCar(car);
+            }
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -89,9 +96,14 @@ public class Simulator {
             Car car = simulatorView.getFirstLeavingCar();
             if (car == null) {
                 break;
+            } else if(car instanceof ParkingPass){
+                car.setIsPaying(false);
+                simulatorView.removeCarAt(car.getLocation());
+                exitCarQueue.addCar(car);
+            } else {
+                car.setIsPaying(true);
+                paymentCarQueue.addCar(car);
             }
-            car.setIsPaying(true);
-            paymentCarQueue.addCar(car);
         }
 
         // Let cars pay.
