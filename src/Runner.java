@@ -34,10 +34,17 @@ public class Runner {
         runsimulationhundred.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int i = 0;
-                while (i < 101){
-                    sim.tick();
-                    i++;
+                for (int i = 0; i < 101; i++){
+                    SwingWorker myWorker= new SwingWorker<String, Void>() {
+                        @Override
+                        protected String doInBackground() throws Exception {
+                            sim.tick();
+                            Thread.sleep(100);
+                            return null;
+                        }
+                    };
+                    myWorker.execute();
+
                 }
             }
         });
