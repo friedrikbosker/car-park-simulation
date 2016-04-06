@@ -6,6 +6,13 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 
 public class QueueView extends SimulatorAbstractView {
+     private JLabel incoming;
+     private JLabel payment;
+     private JLabel exit;
+
+     private int incomingValue;
+     private int paymentValue;
+     private int exitValue;
 
     public QueueView(Simulator simu) {
         super(simu);
@@ -15,13 +22,10 @@ public class QueueView extends SimulatorAbstractView {
 
 
         JLabel incoming = new JLabel("Incoming queue");
-        incoming.setText("Incoming queue: " + simu.entranceCarQueue.queueSize());
 
         JLabel payment = new JLabel("Payment queue");
-        payment.setText("Payment queue: " + simu.paymentCarQueue.queueSize());
 
         JLabel exit = new JLabel("Exit queue");
-        exit.setText("Exit queue: " + simu.exitCarQueue.queueSize());
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(incoming,BorderLayout.NORTH);
@@ -34,6 +38,18 @@ public class QueueView extends SimulatorAbstractView {
 
         queueframe.pack();
         queueframe.setVisible(true);
+
+    }
+
+    //returns queue sizes
+    private void returnvalues(){
+        incomingValue = simu.entranceCarQueue.queueSize();
+        paymentValue = simu.paymentCarQueue.queueSize();
+        exitValue = simu.exitCarQueue.queueSize();
+
+        incoming.setText("Entrance queue: " + incomingValue);
+        payment.setText("Payment queue: " + paymentValue);
+        exit.setText("Exit queue: " + exitValue);
 
     }
 }

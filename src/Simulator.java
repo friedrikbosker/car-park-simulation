@@ -135,7 +135,7 @@ public class Simulator extends SimulatorAbstractModel {
 
         // Update the car park view.
         simulatorView.updateView();
-        notifyViews();
+        super.notifyViews();
 
         // Pause.
         try {

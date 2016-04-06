@@ -16,6 +16,11 @@ public abstract class SimulatorAbstractView extends JPanel {
     }
 
     public void updateView(){
+        setvalues();
         repaint();
+    }
+
+    private void setvalues(){
+
     }
 }
