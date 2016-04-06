@@ -1,17 +1,18 @@
 import java.util.Random;
 
-public class Simulator {
+public class Simulator extends SimulatorAbstractModel {
 
     private static final int Parkingpasschance = 3;
 
-    private CarQueue entranceCarQueue;
-    private CarQueue paymentCarQueue;
-    private CarQueue exitCarQueue;
+    protected CarQueue entranceCarQueue;
+    protected CarQueue paymentCarQueue;
+    protected CarQueue exitCarQueue;
     private SimulatorView simulatorView;
 
     private int day = 0;
     private int hour = 0;
     private int minute = 0;
+
 
     private int tickPause = 100;
 
@@ -35,6 +36,11 @@ public class Simulator {
         }
     }
 
+    public void run100() {
+        for (int i = 0; i<100; i++) {
+            tick();
+        }
+    }
     public void tick() {
         // Advance the time by one minute.
         minute++;
@@ -71,6 +77,7 @@ public class Simulator {
                 Car car = new ParkingPass();
                 entranceCarQueue.addCar(car);
             }
+
         }
 
         // Remove car from the front of the queue and assign to a parking space.
@@ -128,6 +135,7 @@ public class Simulator {
 
         // Update the car park view.
         simulatorView.updateView();
+        notifyViews();
 
         // Pause.
         try {

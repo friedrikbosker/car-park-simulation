@@ -2,14 +2,14 @@
  * Created by Friedrik on 1-4-2016.
  */
 import java.awt.*;
-        import java.awt.event.*;
-                import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class Runner {
- private Simulator sim;
+
     public static void main (String[] args) {
         Simulator sim = new Simulator();
-
+        QueueView queue = new QueueView(sim);
         JFrame frame = new JFrame("Car park menu");
 
         Container contentPane = frame.getContentPane();
@@ -34,10 +34,17 @@ public class Runner {
         runsimulationhundred.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int i = 0;
-                while (i < 101){
-                    sim.tick();
-                    i++;
+                for (int i = 0; i < 100; i++){
+                    SwingWorker myWorker= new SwingWorker<String, Void>() {
+                        @Override
+                        protected String doInBackground() throws Exception {
+                            sim.tick();
+                            Thread.sleep(100);
+                            return null;
+                        }
+                    };
+                    myWorker.execute();
+
                 }
             }
         });
