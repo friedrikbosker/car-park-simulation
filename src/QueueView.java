@@ -16,40 +16,30 @@ public class QueueView extends SimulatorAbstractView {
 
     public QueueView(Simulator sim) {
         super(sim);
+        setSize(200,200);
 
 
-        JFrame queueframe = new JFrame("Queue information");
 
-
-        JLabel incoming = new JLabel("Incoming queue");
+        JLabel incoming = new JLabel("Entrance queue");
+        incoming.setText("Entrance queue: " + sim.entranceCarQueue.queueSize());
 
         JLabel payment = new JLabel("Payment queue");
+        payment.setText("Payment queue: " + sim.paymentCarQueue.queueSize());
 
         JLabel exit = new JLabel("Exit queue");
+        exit.setText("Exit queue: " + sim.exitCarQueue.queueSize());
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(incoming,BorderLayout.NORTH);
         panel.add(payment,BorderLayout.CENTER);
         panel.add(exit,BorderLayout.SOUTH);
 
-        queueframe.add(panel);
 
+        add(panel);
 
+        setVisible(true);
 
-        queueframe.pack();
-        queueframe.setVisible(true);
 
     }
 
-    //returns queue sizes
-    private void returnvalues(){
-        incomingValue = sim.entranceCarQueue.queueSize();
-        paymentValue = sim.paymentCarQueue.queueSize();
-        exitValue = sim.exitCarQueue.queueSize();
-
-        incoming.setText("Entrance queue: " + incomingValue);
-        payment.setText("Payment queue: " + paymentValue);
-        exit.setText("Exit queue: " + exitValue);
-
-    }
 }
