@@ -9,10 +9,8 @@ public class QueueView extends SimulatorAbstractView {
      private JLabel incoming;
      private JLabel payment;
      private JLabel exit;
+     private JPanel panel;
 
-     private int incomingValue;
-     private int paymentValue;
-     private int exitValue;
 
     public QueueView(Simulator sim) {
         super(sim);
@@ -20,16 +18,16 @@ public class QueueView extends SimulatorAbstractView {
 
 
 
-        JLabel incoming = new JLabel("Entrance queue");
+        incoming = new JLabel("Entrance queue");
         incoming.setText("Entrance queue: " + sim.entranceCarQueue.queueSize());
 
-        JLabel payment = new JLabel("Payment queue");
+        payment = new JLabel("Payment queue");
         payment.setText("Payment queue: " + sim.paymentCarQueue.queueSize());
 
-        JLabel exit = new JLabel("Exit queue");
+        exit = new JLabel("Exit queue");
         exit.setText("Exit queue: " + sim.exitCarQueue.queueSize());
 
-        JPanel panel = new JPanel(new BorderLayout());
+        panel = new JPanel(new BorderLayout());
         panel.add(incoming,BorderLayout.NORTH);
         panel.add(payment,BorderLayout.CENTER);
         panel.add(exit,BorderLayout.SOUTH);
@@ -41,5 +39,12 @@ public class QueueView extends SimulatorAbstractView {
 
 
     }
+
+    public void paintComponent(Graphics g) {
+        incoming.setText("Entrance queue: " + sim.entranceCarQueue.queueSize());
+        payment.setText("Payment queue: " + sim.paymentCarQueue.queueSize());
+        exit.setText("Exit queue: " + sim.exitCarQueue.queueSize());
+    }
+
 
 }
