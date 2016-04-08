@@ -4,23 +4,19 @@
 import javax.swing.*;
 
 public abstract class SimulatorAbstractView extends JPanel {
-    protected Simulator simu;
+    protected Simulator sim;
 
-    public SimulatorAbstractView(Simulator simu) {
-        this.simu = simu;
-        simu.addView(this);
+    public SimulatorAbstractView(Simulator sim) {
+        this.sim = sim;
+        sim.addView(this);
     }
 
     public Simulator getModel() {
-        return simu;
+        return sim;
     }
 
     public void updateView(){
-        setvalues();
         repaint();
     }
 
-    private void setvalues(){
-
-    }
 }

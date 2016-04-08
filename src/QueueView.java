@@ -14,8 +14,8 @@ public class QueueView extends SimulatorAbstractView {
      private int paymentValue;
      private int exitValue;
 
-    public QueueView(Simulator simu) {
-        super(simu);
+    public QueueView(Simulator sim) {
+        super(sim);
 
 
         JFrame queueframe = new JFrame("Queue information");
@@ -43,9 +43,9 @@ public class QueueView extends SimulatorAbstractView {
 
     //returns queue sizes
     private void returnvalues(){
-        incomingValue = simu.entranceCarQueue.queueSize();
-        paymentValue = simu.paymentCarQueue.queueSize();
-        exitValue = simu.exitCarQueue.queueSize();
+        incomingValue = sim.entranceCarQueue.queueSize();
+        paymentValue = sim.paymentCarQueue.queueSize();
+        exitValue = sim.exitCarQueue.queueSize();
 
         incoming.setText("Entrance queue: " + incomingValue);
         payment.setText("Payment queue: " + paymentValue);
