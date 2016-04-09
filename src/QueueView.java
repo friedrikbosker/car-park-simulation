@@ -12,6 +12,10 @@ public class QueueView extends SimulatorAbstractView {
      private JPanel panel;
 
 
+    /**
+     * Constructor for the QueueView class
+     * @param sim
+     */
     public QueueView(Simulator sim) {
         super(sim);
         setSize(200,200);
@@ -40,6 +44,10 @@ public class QueueView extends SimulatorAbstractView {
 
     }
 
+    /**
+     * Updates the text for the labels in QueueView
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         incoming.setText("Entrance queue: " + sim.entranceCarQueue.queueSize());
         payment.setText("Payment queue: " + sim.paymentCarQueue.queueSize());

@@ -6,6 +6,10 @@ import javax.swing.*;
 public abstract class SimulatorAbstractController extends JPanel {
     protected Simulator sim;
 
+    /**
+     * Constructor for the SimulatorAbstractController class
+     * @param sim
+     */
     public SimulatorAbstractController(Simulator sim) {
         this.sim = sim;
     }

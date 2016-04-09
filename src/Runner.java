@@ -7,6 +7,10 @@ import javax.swing.*;
 
 public class Runner {
 
+    /**
+     * runs the simulator
+     * @param args
+     */
     public static void main (String[] args) {
         new SimulatorManager();
 

@@ -23,6 +23,9 @@ public class Simulator extends SimulatorAbstractModel {
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars that can leave per minute
 
+    /**
+     * Constructor for the Simulator class
+     */
     public Simulator() {
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
@@ -30,17 +33,18 @@ public class Simulator extends SimulatorAbstractModel {
         simulatorView = new SimulatorView(3, 6, 30);
     }
 
+    /**
+     * runs the simulator for 10000 ticks
+     */
     public void run() {
         for (int i = 0; i < 10000; i++) {
             tick();
         }
     }
 
-    public void run100() {
-        for (int i = 0; i<100; i++) {
-            tick();
-        }
-    }
+    /**
+     * Runs the simulator for a single tick
+     */
     public void tick() {
         // Advance the time by one minute.
         minute++;

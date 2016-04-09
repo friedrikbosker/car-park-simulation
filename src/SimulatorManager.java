@@ -9,6 +9,10 @@ public class SimulatorManager {
     private SimulatorRunController run;
     private QueueView queue;
 
+    /**
+     * Constructor for the SimulatorManager class
+     * Opens a Simulatorview and a frame with buttons and views
+     */
     public SimulatorManager(){
         sim = new Simulator();
         run = new SimulatorRunController(sim);

@@ -10,6 +10,11 @@ import java.awt.event.*;
 public class SimulatorRunController extends SimulatorAbstractController {
 
 
+    /**
+     * Constructor for the SimulatorRunController class
+     * adds buttons to the SimulatorManager which run the Simulator once or a hundred times.
+     * @param sim
+     */
     public SimulatorRunController(Simulator sim) {
         super(sim);
         setSize(450, 50);

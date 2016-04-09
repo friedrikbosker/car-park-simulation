@@ -8,6 +8,12 @@ public class SimulatorView extends JFrame {
     private int numberOfPlaces;
     private Car[][][] cars;
 
+    /**
+     * Constructor for the SimulatorView class
+     * @param numberOfFloors
+     * @param numberOfRows
+     * @param numberOfPlaces
+     */
     public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -26,29 +32,55 @@ public class SimulatorView extends JFrame {
         updateView();
     }
 
+    /**
+     * updates the view
+     */
     public void updateView() {
         carParkView.updateView();
     }
-    
+
+    /**
+     * returns the number of floors
+     * @return numberOfFloors
+     */
      public int getNumberOfFloors() {
             return numberOfFloors;
         }
-    
+
+    /**
+     * returns the number of rows
+     * @return numberOfRows
+     */
         public int getNumberOfRows() {
             return numberOfRows;
         }
-    
+
+    /**
+     * returns the number of places
+     * @return numberOfPlaces
+     */
         public int getNumberOfPlaces() {
             return numberOfPlaces;
         }
-    
+
+    /**
+     * returns the car on a location if it's there
+     * @param location
+     * @return null or car
+     */
         public Car getCarAt(Location location) {
             if (!locationIsValid(location)) {
                 return null;
             }
             return cars[location.getFloor()][location.getRow()][location.getPlace()];
         }
-    
+
+    /**
+     * sets a car at a location if it's valid
+     * @param location
+     * @param car
+     * @return false or true
+     */
         public boolean setCarAt(Location location, Car car) {
             if (!locationIsValid(location)) {
                 return false;
@@ -61,7 +93,12 @@ public class SimulatorView extends JFrame {
             }
             return false;
         }
-    
+
+    /**
+     * removes a car at a location if it's valid
+     * @param location
+     * @return false or true
+     */
         public Car removeCarAt(Location location) {
             if (!locationIsValid(location)) {
                 return null;
@@ -74,7 +111,11 @@ public class SimulatorView extends JFrame {
             car.setLocation(null);
             return car;
         }
-    
+
+    /**
+     * returns the first free location if there is one
+     * @return location or null
+     */
         public Location getFirstFreeLocation() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
@@ -88,7 +129,11 @@ public class SimulatorView extends JFrame {
             }
             return null;
         }
-    
+
+    /**
+     * returns the first leaving car if there is one
+     * @return car or null
+     */
         public Car getFirstLeavingCar() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
@@ -103,8 +148,11 @@ public class SimulatorView extends JFrame {
             }
             return null;
         }
-    
-        public void tick() {
+
+    /**
+     * calls tick() for all cars
+     */
+    public void tick() {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for (int row = 0; row < getNumberOfRows(); row++) {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -117,7 +165,12 @@ public class SimulatorView extends JFrame {
                 }
             }
         }
-    
+
+    /**
+     * returns whether or not a location is valid
+     * @param location
+     * @return false or true
+     */
         private boolean locationIsValid(Location location) {
             int floor = location.getFloor();
             int row = location.getRow();
