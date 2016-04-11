@@ -14,6 +14,8 @@ public class Simulator extends SimulatorAbstractModel {
     private int minute = 0;
 
     public int revenue = 0;
+    public int typepass = 0;
+    public int typecar = 0;
 
     private int tickPause = 100;
 
@@ -78,10 +80,12 @@ public class Simulator extends SimulatorAbstractModel {
             if(random.nextInt(10) > Parkingpasschance) {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
+                typecar++;
             } else {
                 Car car = new ParkingPass();
                 entranceCarQueue.addCar(car);
                 revenue = revenue + 10;
+                typepass++;
             }
 
         }
@@ -137,6 +141,13 @@ public class Simulator extends SimulatorAbstractModel {
             if (car == null) {
                 break;
             }
+            else if(car instanceof ParkingPass){
+                typepass--;
+            }
+            else if(car instanceof AdHocCar){
+                typecar--;
+            }
+
             // Bye!
         }
 
@@ -154,5 +165,26 @@ public class Simulator extends SimulatorAbstractModel {
 
     public int getRevenue(){
         return revenue;
+    }
+
+    /**public void countTypes(){
+        for(Car c : entranceCarQueue) {
+            if (c instanceof ParkingPass) {
+                typepass++;
+            } else {
+                typecar++;
+            }
+
+
+        }
+    }
+    **/
+
+    public int getPasses(){
+        return typepass;
+    }
+
+    public int getCars(){
+        return typecar;
     }
 }
