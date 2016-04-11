@@ -13,6 +13,7 @@ public class Simulator extends SimulatorAbstractModel {
     private int hour = 0;
     private int minute = 0;
 
+    public int revenue = 0;
 
     private int tickPause = 100;
 
@@ -80,6 +81,7 @@ public class Simulator extends SimulatorAbstractModel {
             } else {
                 Car car = new ParkingPass();
                 entranceCarQueue.addCar(car);
+                revenue = revenue + 10;
             }
 
         }
@@ -114,6 +116,7 @@ public class Simulator extends SimulatorAbstractModel {
             } else {
                 car.setIsPaying(true);
                 paymentCarQueue.addCar(car);
+                revenue++;
             }
         }
 
@@ -147,5 +150,9 @@ public class Simulator extends SimulatorAbstractModel {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getRevenue(){
+        return revenue;
     }
 }
