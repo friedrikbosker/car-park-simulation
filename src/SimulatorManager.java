@@ -33,7 +33,7 @@ public class SimulatorManager {
         queue.setBounds(10, 10, 200, 200);
         run.setBounds(0, 210, 450, 50);
         pay.setBounds(80, 10, 450, 50);
-        type.setBounds(110, 10, 450, 50);
+        type.setBounds(130, 10, 750, 50);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
