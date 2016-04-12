@@ -11,7 +11,7 @@ public class TypeView extends SimulatorAbstractView {
 
 
     /**
-     * Constructor for the PaymentView class
+     * Constructor for the TypeView class
      * @param sim
      */
     public TypeView(Simulator sim) {
@@ -39,7 +39,7 @@ public class TypeView extends SimulatorAbstractView {
     }
 
     /**
-     * Updates the text for the labels in PaymentView
+     * Updates the text for the labels in TypeView
      * @param g
      */
     public void paintComponent(Graphics g) {
