@@ -180,18 +180,6 @@ public class Simulator extends SimulatorAbstractModel {
         return revenue;
     }
 
-    /**public void countTypes(){
-        for(Car c : entranceCarQueue) {
-            if (c instanceof ParkingPass) {
-                typepass++;
-            } else {
-                typecar++;
-            }
-
-
-        }
-    }
-    **/
 
     public int getPasses(){
         return typepass;
