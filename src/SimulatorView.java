@@ -238,8 +238,11 @@ public class SimulatorView extends JFrame {
                         else if(car instanceof ParkingPass){
                             color = Color.yellow;
                         }
-                        else {
+                        else if(car instanceof AdHocCar){
                             color = Color.red;
+                        }
+                        else if(car instanceof Reservation){
+                            color = Color.cyan;
                         }
                         drawPlace(graphics, location, color);
                     }

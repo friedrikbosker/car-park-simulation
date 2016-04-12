@@ -8,6 +8,7 @@ public class TypeView extends SimulatorAbstractView {
     private JLabel passes;
     private JLabel cars;
     private JPanel panel;
+    private JLabel res;
 
 
     /**
@@ -26,9 +27,13 @@ public class TypeView extends SimulatorAbstractView {
         cars = new JLabel("Cars without pass");
         cars.setText("Cars without pass: " + sim.getCars());
 
+        res = new JLabel("Cars with reservation");
+        res.setText("Cars with reservation: " + sim.getReservations());
+
         panel = new JPanel(new BorderLayout());
         panel.add(passes,BorderLayout.NORTH);
         panel.add(cars,BorderLayout.SOUTH);
+        panel.add(res,BorderLayout.EAST);
 
 
         add(panel);
@@ -45,6 +50,7 @@ public class TypeView extends SimulatorAbstractView {
     public void paintComponent(Graphics g) {
         passes.setText("Passes: " + sim.getPasses());
         cars.setText("Cars without pass:" + sim.getCars());
+        res.setText("Cars with reservation: " + sim.getReservations());
     }
 
 

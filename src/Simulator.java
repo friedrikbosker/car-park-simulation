@@ -16,6 +16,7 @@ public class Simulator extends SimulatorAbstractModel {
     public int revenue = 0;
     public int typepass = 0;
     public int typecar = 0;
+    public int typerescars = 0;
 
     private int tickPause = 100;
 
@@ -90,6 +91,7 @@ public class Simulator extends SimulatorAbstractModel {
             } else {
                 Car car = new Reservation();
                 entranceCarQueue.addCar(car);
+                typerescars++;
             }
 
         }
@@ -155,6 +157,9 @@ public class Simulator extends SimulatorAbstractModel {
             else if(car instanceof AdHocCar){
                 typecar--;
             }
+            else if(car instanceof Reservation){
+                typerescars--;
+            }
 
             // Bye!
         }
@@ -195,4 +200,5 @@ public class Simulator extends SimulatorAbstractModel {
     public int getCars(){
         return typecar;
     }
+    public int getReservations() {return typerescars;}
 }
