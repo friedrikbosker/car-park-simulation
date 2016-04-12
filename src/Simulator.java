@@ -34,6 +34,7 @@ public class Simulator extends SimulatorAbstractModel {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView(3, 6, 30);
+        simulatorView.reserveSpotsInCarPark();
     }
 
     /**

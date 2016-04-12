@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
@@ -7,6 +8,7 @@ public class SimulatorView extends JFrame {
     private int numberOfRows;
     private int numberOfPlaces;
     private Car[][][] cars;
+    private ArrayList<Location> reservedSpots;
 
     /**
      * Constructor for the SimulatorView class
@@ -19,6 +21,7 @@ public class SimulatorView extends JFrame {
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+        reservedSpots = new ArrayList<Location>();
         
         carParkView = new CarParkView();
 
@@ -64,6 +67,43 @@ public class SimulatorView extends JFrame {
         }
 
     /**
+     * reserves a spot
+     * @param location
+     */
+    public void ReserveSpot(Location location){
+            reservedSpots.add(location);
+    }
+
+    /**
+     * reserves spots in the car park
+     */
+    public void reserveSpotsInCarPark(){
+        for(int floor = 0; floor < getNumberOfFloors(); floor++){
+            Location location = new Location(floor, getNumberOfRows() - 1, getNumberOfPlaces());
+            ReserveSpot(location);
+        }
+        }
+
+    /**
+     * Checks if the spot is reserved
+     * @param location
+     * @return false or true
+     */
+    public boolean isSpotReserved(Location location){
+        String reservedSpotTest = "false";
+        for(Location l : reservedSpots){
+            if(l.equals(location)){
+                reservedSpotTest = "true";
+            }
+        }
+        if(reservedSpotTest.equals("true")){
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
      * returns the car on a location if it's there
      * @param location
      * @return null or car
@@ -75,6 +115,8 @@ public class SimulatorView extends JFrame {
             return cars[location.getFloor()][location.getRow()][location.getPlace()];
         }
 
+
+
     /**
      * sets a car at a location if it's valid
      * @param location
@@ -84,6 +126,15 @@ public class SimulatorView extends JFrame {
         public boolean setCarAt(Location location, Car car) {
             if (!locationIsValid(location)) {
                 return false;
+            } else if (isSpotReserved(location) && !(car instanceof Reservation)){
+                return false;
+            } else if(isSpotReserved(location) && car instanceof Reservation){
+                Car oldCar = getCarAt(location);
+                if (oldCar == null) {
+                    cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
+                    car.setLocation(location);
+                return true;
+            }
             }
             Car oldCar = getCarAt(location);
             if (oldCar == null) {
@@ -180,6 +231,7 @@ public class SimulatorView extends JFrame {
             }
             return true;
         }
+
     
     private class CarParkView extends JPanel {
         
@@ -232,14 +284,20 @@ public class SimulatorView extends JFrame {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
                         Color color = Color.white;
-                        if(car == null){
+                        if(car == null && !isSpotReserved(location)){
                             color = Color.white;
+                        }
+                        else if(car == null && isSpotReserved(location)){
+                            color = Color.black;
                         }
                         else if(car instanceof ParkingPass){
                             color = Color.yellow;
                         }
+                        else if(car instanceof Reservation){
+                            color = Color.blue;
+                        }
                         else {
-                            color = Color.red;
+                            color = Color.RED;
                         }
                         drawPlace(graphics, location, color);
                     }
