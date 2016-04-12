@@ -187,7 +187,7 @@ public class SimulatorView extends JFrame {
         private Image carParkImage;    
     
         /**
-         * Constructor for objects of class CarPark
+         * Constructor for objects of class CarParkView
          */
         public CarParkView() {
             size = new Dimension(0, 0);

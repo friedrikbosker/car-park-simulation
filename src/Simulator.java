@@ -77,15 +77,19 @@ public class Simulator extends SimulatorAbstractModel {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            if(random.nextInt(10) > Parkingpasschance) {
+            int randomnumber = random.nextInt(10);
+            if(randomnumber > 5) {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
                 typecar++;
-            } else {
+            } else if (randomnumber <= 5 && randomnumber > 2) {
                 Car car = new ParkingPass();
                 entranceCarQueue.addCar(car);
                 revenue = revenue + 10;
                 typepass++;
+            } else {
+                Car car = new Reservation();
+                entranceCarQueue.addCar(car);
             }
 
         }
@@ -117,7 +121,11 @@ public class Simulator extends SimulatorAbstractModel {
                 car.setIsPaying(false);
                 simulatorView.removeCarAt(car.getLocation());
                 exitCarQueue.addCar(car);
-            } else {
+            } else if(car instanceof Reservation) {
+                car.setIsPaying(false);
+                simulatorView.removeCarAt(car.getLocation());
+                exitCarQueue.addCar(car);
+            }else{
                 car.setIsPaying(true);
                 paymentCarQueue.addCar(car);
                 revenue++;
