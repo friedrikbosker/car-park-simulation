@@ -2,6 +2,7 @@
  * Created by Friedrik on 8-4-2016.
  */
 import javax.swing.*;
+import java.awt.*;
 
 public class SimulatorManager {
     private JFrame frame;
@@ -10,6 +11,7 @@ public class SimulatorManager {
     private QueueView queue;
     private PaymentView pay;
     private TypeView type;
+    //private JPanel test;
 
     /**
      * Constructor for the SimulatorManager class
@@ -18,6 +20,7 @@ public class SimulatorManager {
     public SimulatorManager(){
         sim = new Simulator();
         run = new SimulatorRunController(sim);
+        //test = new JPanel(new BorderLayout());
         queue = new QueueView(sim);
         pay = new PaymentView(sim);
         type = new TypeView(sim);
@@ -28,6 +31,7 @@ public class SimulatorManager {
         frame.setLayout(null);
         frame.getContentPane().add(queue);
         frame.getContentPane().add(run);
+        //test.add(run, BorderLayout.SOUTH);
         frame.getContentPane().add(pay);
         frame.getContentPane().add(type);
         queue.setBounds(10, 10, 200, 200);

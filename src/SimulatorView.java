@@ -218,7 +218,7 @@ public class SimulatorView extends JFrame {
                 g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
             }
         }
-    
+
         public void updateView() {
             // Create a new car park image if the size has changed.
             if (!size.equals(getSize())) {
@@ -231,7 +231,16 @@ public class SimulatorView extends JFrame {
                     for(int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
-                        Color color = car == null ? Color.white : Color.red;
+                        Color color = Color.white;
+                        if(car == null){
+                            color = Color.white;
+                        }
+                        else if(car instanceof ParkingPass){
+                            color = Color.yellow;
+                        }
+                        else {
+                            color = Color.red;
+                        }
                         drawPlace(graphics, location, color);
                     }
                 }
