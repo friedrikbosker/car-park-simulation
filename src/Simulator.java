@@ -35,7 +35,6 @@ public class Simulator extends SimulatorAbstractModel {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView(3, 6, 30);
-        simulatorView.reserveSpotsInCarPark();
     }
 
     /**
@@ -79,12 +78,12 @@ public class Simulator extends SimulatorAbstractModel {
 
         // Add the cars to the back of the queue.
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            int randomnumber = random.nextInt(10);
-            if(randomnumber > 5) {
+            int randomnumber = random.nextInt(100);
+            if(randomnumber > 50) {
                 Car car = new AdHocCar();
                 entranceCarQueue.addCar(car);
                 typecar++;
-            } else if (randomnumber <= 5 && randomnumber > 2) {
+            } else if (randomnumber <= 50 && randomnumber > 10) {
                 Car car = new ParkingPass();
                 entranceCarQueue.addCar(car);
                 revenue = revenue + 10;
@@ -106,9 +105,15 @@ public class Simulator extends SimulatorAbstractModel {
             // Find a space for this car.
             Location freeLocation = simulatorView.getFirstFreeLocation();
             if (freeLocation != null) {
-                simulatorView.setCarAt(freeLocation, car);
-                int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
-                car.setMinutesLeft(stayMinutes);
+                if(car instanceof Reservation){
+                    simulatorView.setCarAt(freeLocation, car);
+                    int stayMinutes = 1440;
+                    car.setMinutesLeft(stayMinutes);
+                } else {
+                    simulatorView.setCarAt(freeLocation, car);
+                    int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
+                    car.setMinutesLeft(stayMinutes);
+                }
             }
         }
 
