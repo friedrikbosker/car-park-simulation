@@ -13,10 +13,10 @@ public class Simulator extends SimulatorAbstractModel {
     private int hour = 0;
     private int minute = 0;
 
-    public int revenue = 0;
-    public int typepass = 0;
-    public int typecar = 0;
-    public int typerescars = 0;
+    private int revenue = 0;
+    private int typepass = 0;
+    private int typecar = 0;
+    private int typerescars = 0;
 
     private int tickPause = 100;
 
@@ -182,15 +182,13 @@ public class Simulator extends SimulatorAbstractModel {
         }
     }
 
+    // Methods used for the views.
     public int getRevenue(){
         return revenue;
     }
-
-
     public int getPasses(){
         return typepass;
     }
-
     public int getCars(){
         return typecar;
     }

@@ -11,7 +11,6 @@ public class SimulatorManager {
     private QueueView queue;
     private PaymentView pay;
     private TypeView type;
-    //private JPanel test;
 
     /**
      * Constructor for the SimulatorManager class
@@ -20,7 +19,6 @@ public class SimulatorManager {
     public SimulatorManager(){
         sim = new Simulator();
         run = new SimulatorRunController(sim);
-        //test = new JPanel(new BorderLayout());
         queue = new QueueView(sim);
         pay = new PaymentView(sim);
         type = new TypeView(sim);
@@ -31,7 +29,6 @@ public class SimulatorManager {
         frame.setLayout(null);
         frame.getContentPane().add(queue);
         frame.getContentPane().add(run);
-        //test.add(run, BorderLayout.SOUTH);
         frame.getContentPane().add(pay);
         frame.getContentPane().add(type);
         queue.setBounds(10, 10, 200, 200);
@@ -39,6 +36,7 @@ public class SimulatorManager {
         pay.setBounds(80, 10, 450, 50);
         type.setBounds(130, 10, 750, 50);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
